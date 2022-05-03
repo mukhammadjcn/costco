@@ -1,7 +1,9 @@
 <template>
   <div class="header">
     <div class="container flex">
-      <img src="../assets/logoHeader.png" alt="" />
+      <a href="/">
+        <img src="../assets/logoHeader.png" alt="" />
+      </a>
       <p>We will update clearance product from costco everyday</p>
     </div>
   </div>

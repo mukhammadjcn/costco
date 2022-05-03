@@ -1,14 +1,17 @@
 <template>
   <div id="app">
     <TheHeader />
+
+    <AddSection />
   </div>
 </template>
 
 <script>
 import TheHeader from "./components/TheHeader.vue";
+import AddSection from "./components/AddSection.vue";
 export default {
   name: "App",
-  components: { TheHeader },
+  components: { TheHeader, AddSection },
 };
 </script>
 
@@ -32,7 +35,7 @@ export default {
   margin: 0 auto;
 }
 
-@media (max-width: 1140px) {
+@media (max-width: 1320px) {
   .container {
     max-width: 90%;
   }

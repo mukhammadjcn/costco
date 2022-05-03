@@ -102,8 +102,9 @@ export default {
 
 <style lang="scss">
 .sidebar {
-  width: 320px;
+  width: 300px;
   cursor: pointer;
+  flex-shrink: 0;
   &__title {
     background: #e31936;
     font-weight: 700;

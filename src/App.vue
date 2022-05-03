@@ -1,21 +1,43 @@
 <template>
   <div id="app">
+    <!-- Header section -->
     <TheHeader />
 
+    <!-- Adverts section -->
     <AddSection />
+
+    <!-- The subscribe section -->
+    <TheSubscribe @loading="setLoading" />
+
+    <!-- Loading option for fetching data -->
+    <TheLoading v-show="loading" />
   </div>
 </template>
 
 <script>
 import TheHeader from "./components/TheHeader.vue";
 import AddSection from "./components/AddSection.vue";
+import TheSubscribe from "./components/TheSubscribe.vue";
+import TheLoading from "./components/TheLoading.vue";
 export default {
   name: "App",
-  components: { TheHeader, AddSection },
+  components: { TheHeader, AddSection, TheSubscribe, TheLoading },
+  data() {
+    return {
+      loading: false,
+    };
+  },
+  methods: {
+    setLoading(val) {
+      this.loading = val;
+    },
+  },
 };
 </script>
 
 <style lang="scss">
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -41,9 +63,7 @@ export default {
   }
 }
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: "Lato", sans-serif;
   color: #2c3e50;
 }
 </style>

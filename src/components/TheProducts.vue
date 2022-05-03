@@ -1,14 +1,29 @@
 <template>
   <div class="products">
     <div class="container flex">
+      <!-- Sidebar side -->
       <TheSidebar />
 
-      <div class="products__list">
-        <ProductItem
-          v-for="item in records"
-          :key="item.productId"
-          :item="item"
-        />
+      <!-- Products list side -->
+      <div class="">
+        <!-- products -->
+        <div class="products__list">
+          <ProductItem
+            v-for="item in records"
+            :key="item.productId"
+            :item="item"
+          />
+        </div>
+
+        <!-- Bottom pagination -->
+        <page-paginate
+          :page-count="20"
+          :click-handler="changePage"
+          :prev-text="'Prev'"
+          :next-text="'Next'"
+          :container-class="'pagination'"
+        >
+        </page-paginate>
       </div>
     </div>
   </div>
@@ -285,6 +300,9 @@ export default {
       const data = await axios.get("/costcosteals/product");
       console.log(data);
     },
+    changePage(pageNum) {
+      alert(pageNum);
+    },
   },
   mounted() {
     this.getProducts();
@@ -308,6 +326,36 @@ export default {
     align-items: center;
     gap: 24px;
     flex-wrap: wrap;
+    justify-content: space-between;
+  }
+}
+
+.pagination {
+  display: inline-flex;
+  float: right;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  margin-top: 24px;
+  border-radius: 8px;
+  padding: 4px;
+  gap: 4px;
+
+  & > li {
+    padding: 8px 12px;
+  }
+
+  .active {
+    color: white;
+    background: black;
+    border-radius: 4px;
+  }
+
+  .disabled {
+    background: #f4f4f4;
+    border-radius: 4px;
+    cursor: not-allowed;
+    a {
+      cursor: not-allowed;
+    }
   }
 }
 </style>

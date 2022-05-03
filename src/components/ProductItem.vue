@@ -22,6 +22,8 @@ export default {
 .product {
   border: 1px solid #cccccc;
   width: 300px;
+  border-radius: 4px;
+  overflow: hidden;
 
   &__img {
     height: 280px;

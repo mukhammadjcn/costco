@@ -9,6 +9,9 @@
     <!-- The subscribe section -->
     <TheSubscribe @loading="setLoading" />
 
+    <!-- The products section -->
+    <TheProducts />
+
     <!-- Loading option for fetching data -->
     <TheLoading v-show="loading" />
   </div>
@@ -19,9 +22,10 @@ import TheHeader from "./components/TheHeader.vue";
 import AddSection from "./components/AddSection.vue";
 import TheSubscribe from "./components/TheSubscribe.vue";
 import TheLoading from "./components/TheLoading.vue";
+import TheProducts from "./components/TheProducts.vue";
 export default {
   name: "App",
-  components: { TheHeader, AddSection, TheSubscribe, TheLoading },
+  components: { TheHeader, AddSection, TheSubscribe, TheLoading, TheProducts },
   data() {
     return {
       loading: false,

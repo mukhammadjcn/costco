@@ -21,5 +21,15 @@
   p {
     font-weight: 600;
   }
+
+  @media (max-width: 776px) {
+    img {
+      height: 28px;
+    }
+
+    p {
+      display: none;
+    }
+  }
 }
 </style>

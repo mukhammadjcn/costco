@@ -5,7 +5,7 @@
       <TheSidebar @category="setCategory" />
 
       <!-- Products list side -->
-      <div style="width: 100%">
+      <div class="products__box">
         <!-- products -->
         <div
           class="products__list"
@@ -21,7 +21,7 @@
         <!-- If products list empty this section will be visible -->
         <div class="animation" v-show="products.length < 1">
           <h1>No data, please try again or, change category !</h1>
-          <img src="../assets/nodatawebp.png" alt="" />
+          <img src="../assets/data.png" alt="" />
         </div>
 
         <!-- Bottom pagination -->
@@ -74,10 +74,12 @@ export default {
         // Storing data
         this.products = data.data.productPage.records;
         this.pagination = data.data.productPage.pages;
-        console.log("this.products", this.products);
+        data.data.productPage.records.length > 1
+          ? this.$toast.success("Products fetched succesfully )")
+          : this.$toast.warning("No Data, choose another category");
       } catch {
         // If somthing went wrong alert this
-        alert("Something went wrong on fetching products !");
+        this.$toast.error("Something went wrong on fetching products !");
       } finally {
         // Loading false
         this.$emit("loading", false);
@@ -121,6 +123,30 @@ export default {
     flex-wrap: wrap;
     justify-content: flex-start;
   }
+
+  &__box {
+    width: 100%;
+  }
+
+  @media (max-width: 776px) {
+    .flex {
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    &__box {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .product {
+      width: 90%;
+    }
+  }
 }
 
 .pagination {
@@ -157,6 +183,13 @@ export default {
   img {
     width: 500px;
     height: 500px;
+  }
+
+  @media (max-width: 520px) {
+    img {
+      width: 100%;
+      height: auto;
+    }
   }
 }
 </style>

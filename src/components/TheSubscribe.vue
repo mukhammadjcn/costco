@@ -51,16 +51,16 @@ export default {
             }),
             options
           );
-          alert("Your email succefully stored )");
+          this.$toast.success("Your email succefully stored )");
         } catch {
-          alert("Somthing went wrong, try again !");
+          this.$toast.error("Somthing went wrong, try again !");
         } finally {
           // Loading false
           this.$emit("loading", false);
           this.email = "";
         }
       } else {
-        alert("Please enter valid email");
+        this.$toast.error("Please enter valid email");
       }
     },
   },
@@ -120,6 +120,37 @@ export default {
     color: white;
     font-weight: 500;
     cursor: pointer;
+  }
+
+  @media (max-width: 776px) {
+    &__form {
+      width: 90%;
+    }
+  }
+
+  @media (max-width: 520px) {
+    &__title {
+      font-size: 36px;
+    }
+
+    &__info {
+      font-size: 16px;
+    }
+
+    &__form {
+      display: flex;
+      flex-direction: column;
+      height: auto;
+      align-items: center;
+    }
+    &__email {
+      height: 48px;
+      margin-bottom: 16px;
+    }
+    &__submit {
+      position: relative;
+      padding: 10px 24px;
+    }
   }
 }
 </style>

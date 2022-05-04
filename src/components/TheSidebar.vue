@@ -1,15 +1,20 @@
 <template>
-  <div class="sidebar">
-    <h2 class="sidebar__title" @click="setActive('')">All products</h2>
-    <div class="sidebar__list">
-      <div
-        class="sidebar__item"
-        v-for="item in category"
-        :key="item.id"
-        @click="setActive(item.name)"
-        :class="activeCategory == item.name ? 'active' : ''"
-      >
-        {{ item.name }}
+  <div class="sidebar__box">
+    <button class="sidebar__showBtn" @click="showCategory">
+      {{ mobile ? "Hide Categories" : "Show Categories" }}
+    </button>
+    <div class="sidebar" :class="mobile ? 'sidebar-active' : ''">
+      <h2 class="sidebar__title" @click="setActive('')">All products</h2>
+      <div class="sidebar__list">
+        <div
+          class="sidebar__item"
+          v-for="item in category"
+          :key="item.id"
+          @click="setActive(item.name)"
+          :class="activeCategory == item.name ? 'active' : ''"
+        >
+          {{ item.name }}
+        </div>
       </div>
     </div>
   </div>
@@ -102,6 +107,7 @@ export default {
           name: "View More Categories",
         },
       ],
+      mobile: false,
     };
   },
   methods: {
@@ -111,6 +117,12 @@ export default {
 
       // Give category name for products
       this.$emit("category", name);
+
+      // Close moible tab
+      this.showCategory();
+    },
+    showCategory() {
+      this.mobile = !this.mobile;
     },
   },
 };
@@ -154,8 +166,43 @@ export default {
     }
   }
 
+  &__showBtn {
+    display: none;
+    cursor: pointer;
+    width: 100%;
+    padding: 12px;
+    font-size: 18px;
+    border: none;
+    background: #ffe2e2;
+    color: black;
+    border-radius: 6px;
+    margin-bottom: 16px;
+  }
+
   .active {
     background: #ffd3d3;
+  }
+
+  @media (max-width: 776px) {
+    display: none;
+    height: 0;
+
+    &__showBtn {
+      display: block;
+    }
+
+    &-active {
+      height: auto;
+      display: block;
+    }
+
+    &__box {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 520px) {
+    width: 100%;
   }
 }
 </style>

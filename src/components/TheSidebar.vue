@@ -1,8 +1,14 @@
 <template>
   <div class="sidebar">
-    <h2 class="sidebar__title">All products</h2>
+    <h2 class="sidebar__title" @click="setActive('')">All products</h2>
     <div class="sidebar__list">
-      <div class="sidebar__item" v-for="item in category" :key="item.id">
+      <div
+        class="sidebar__item"
+        v-for="item in category"
+        :key="item.id"
+        @click="setActive(item.name)"
+        :class="activeCategory == item.name ? 'active' : ''"
+      >
         {{ item.name }}
       </div>
     </div>
@@ -13,6 +19,7 @@
 export default {
   data() {
     return {
+      activeCategory: null,
       category: [
         {
           id: 1,
@@ -97,6 +104,15 @@ export default {
       ],
     };
   },
+  methods: {
+    setActive(name) {
+      // Set active category
+      this.activeCategory = name;
+
+      // Give category name for products
+      this.$emit("category", name);
+    },
+  },
 };
 </script>
 
@@ -136,6 +152,10 @@ export default {
     &:last-child {
       border-bottom: none;
     }
+  }
+
+  .active {
+    background: #ffd3d3;
   }
 }
 </style>

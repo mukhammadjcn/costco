@@ -2,7 +2,7 @@
   <div class="products">
     <div class="container flex">
       <!-- Sidebar side -->
-      <TheSidebar />
+      <TheSidebar @category="setCategory" />
 
       <!-- Products list side -->
       <div class="">
@@ -17,8 +17,9 @@
 
         <!-- Bottom pagination -->
         <page-paginate
+          v-model="categoryPage"
           :page-count="pagination"
-          :click-handler="getProducts"
+          :click-handler="isCategory ? setPage : getProducts"
           :prev-text="'Prev'"
           :next-text="'Next'"
           :container-class="'pagination'"
@@ -40,10 +41,12 @@ export default {
     return {
       products: [],
       pagination: 5,
+      isCategory: "",
+      categoryPage: 1,
     };
   },
   methods: {
-    async getProducts(pageNum) {
+    async getProducts(pageNum, isCategory) {
       try {
         // Loading true
         this.$emit("loading", true);
@@ -51,7 +54,17 @@ export default {
 
         // Fetching products
         const { data } = await axios.get(
-          `/costcosteals/product?currentPage=${
+          `/costcosteals/product${
+            isCategory ? "/" + isCategory : ""
+          }?currentPage=${
+            pageNum && pageNum !== undefined ? pageNum : 1
+          }&currentSize=9`
+        );
+        console.log(
+          "path",
+          `/costcosteals/product${
+            isCategory ? "/" + isCategory : ""
+          }?currentPage=${
             pageNum && pageNum !== undefined ? pageNum : 1
           }&currentSize=9`
         );
@@ -67,6 +80,18 @@ export default {
         this.$emit("loading", false);
         document.body.style.overflow = "auto";
       }
+    },
+    setCategory(val) {
+      this.isCategory = val;
+      this.categoryPage = 1;
+      this.fetchCategory();
+    },
+    setPage(page) {
+      this.categoryPage = page;
+      this.fetchCategory();
+    },
+    fetchCategory() {
+      this.getProducts(this.categoryPage, this.isCategory);
     },
   },
   mounted() {

@@ -10,7 +10,7 @@
     <TheSubscribe @loading="setLoading" />
 
     <!-- The products section -->
-    <TheProducts />
+    <TheProducts @loading="setLoading" />
 
     <!-- Loading option for fetching data -->
     <TheLoading v-show="loading" />

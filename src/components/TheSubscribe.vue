@@ -32,6 +32,7 @@ export default {
   },
   methods: {
     async submit() {
+      // Options header
       const options = {
         method: "POST",
         headers: { "content-type": "application/x-www-form-urlencoded" },
@@ -50,8 +51,10 @@ export default {
             }),
             options
           );
-        } finally {
           alert("Your email succefully stored )");
+        } catch {
+          alert("Somthing went wrong, try again !");
+        } finally {
           // Loading false
           this.$emit("loading", false);
           this.email = "";

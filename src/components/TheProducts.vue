@@ -5,9 +5,12 @@
       <TheSidebar @category="setCategory" />
 
       <!-- Products list side -->
-      <div class="">
+      <div style="width: 100%">
         <!-- products -->
-        <div class="products__list">
+        <div
+          class="products__list"
+          v-if="products !== undefined && products.length > 0"
+        >
           <ProductItem
             v-for="item in products"
             :key="item.productId"
@@ -15,8 +18,19 @@
           />
         </div>
 
+        <!-- If products list empty this section will be visible -->
+        <div class="animation" v-show="products.length < 1">
+          <LottieAnimation
+            ref="anim"
+            :loop="true"
+            :autoPlay="true"
+            :animationData="require('../assets/nodata.json')"
+          />
+        </div>
+
         <!-- Bottom pagination -->
         <page-paginate
+          v-if="products !== undefined && products.length > 0"
           v-model="categoryPage"
           :page-count="pagination"
           :click-handler="isCategory ? setPage : getProducts"
@@ -33,10 +47,11 @@
 <script>
 import TheSidebar from "./TheSidebar.vue";
 import ProductItem from "./ProductItem.vue";
+import LottieAnimation from "lottie-web-vue";
 import axios from "@/axios/axios";
 
 export default {
-  components: { TheSidebar, ProductItem },
+  components: { TheSidebar, ProductItem, LottieAnimation },
   data() {
     return {
       products: [],
@@ -60,18 +75,11 @@ export default {
             pageNum && pageNum !== undefined ? pageNum : 1
           }&currentSize=9`
         );
-        console.log(
-          "path",
-          `/costcosteals/product${
-            isCategory ? "/" + isCategory : ""
-          }?currentPage=${
-            pageNum && pageNum !== undefined ? pageNum : 1
-          }&currentSize=9`
-        );
 
         // Storing data
         this.products = data.data.productPage.records;
         this.pagination = data.data.productPage.pages;
+        console.log("this.products", this.products);
       } catch {
         // If somthing went wrong alert this
         alert("Something went wrong on fetching products !");
@@ -116,7 +124,7 @@ export default {
     align-items: center;
     gap: 24px;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
   }
 }
 
@@ -147,5 +155,11 @@ export default {
       cursor: not-allowed;
     }
   }
+}
+
+.animation {
+  width: 500px;
+  height: 500px;
+  margin: auto;
 }
 </style>

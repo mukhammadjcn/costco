@@ -3925,18 +3925,6 @@ log-update@^2.3.0:
     cli-cursor "^2.0.0"
     wrap-ansi "^3.0.1"
 
-lottie-web-vue@1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/lottie-web-vue/-/lottie-web-vue-1.2.1.tgz#21327e1d1814fb2f40e0b4ad4378339835119afe"
-  integrity sha512-JwHb8x5zOBBOL4zObVgBIVmVDMBALo1zMP6/OR+gbEWDpQTpRndixjhjwiVvjUWlrZPl7ScUwiHQGwrn6qlfEw==
-  dependencies:
-    lottie-web "^5.7.4"
-
-lottie-web@^5.7.4:
-  version "5.9.4"
-  resolved "https://registry.yarnpkg.com/lottie-web/-/lottie-web-5.9.4.tgz#c01478ee5dd47f916cb4bb79040c11d427872d57"
-  integrity sha512-bSs1ZTPifnBVejO1MnQHdfrKfcn02YTCmgOh2wcAEICqRA0V7GzDh8FnwXY6+EzT+i8XOunaIloo/5xC5YNbsA==
-
 lower-case@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/lower-case/-/lower-case-2.0.2.tgz#6fa237c63dbdc4a82ca0fd882e4722dc5e634e28"

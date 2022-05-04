@@ -20,12 +20,8 @@
 
         <!-- If products list empty this section will be visible -->
         <div class="animation" v-show="products.length < 1">
-          <LottieAnimation
-            ref="anim"
-            :loop="true"
-            :autoPlay="true"
-            :animationData="require('../assets/nodata.json')"
-          />
+          <h1>No data, please try again or, change category !</h1>
+          <img src="../assets/nodatawebp.webp" alt="" />
         </div>
 
         <!-- Bottom pagination -->
@@ -47,11 +43,10 @@
 <script>
 import TheSidebar from "./TheSidebar.vue";
 import ProductItem from "./ProductItem.vue";
-import LottieAnimation from "lottie-web-vue";
 import axios from "@/axios/axios";
 
 export default {
-  components: { TheSidebar, ProductItem, LottieAnimation },
+  components: { TheSidebar, ProductItem },
   data() {
     return {
       products: [],
@@ -158,8 +153,10 @@ export default {
 }
 
 .animation {
-  width: 500px;
-  height: 500px;
-  margin: auto;
+  text-align: center;
+  img {
+    width: 500px;
+    height: 500px;
+  }
 }
 </style>

@@ -21,7 +21,7 @@
         <!-- If products list empty this section will be visible -->
         <div class="animation" v-show="products.length < 1">
           <h1>No data, please try again or, change category !</h1>
-          <img src="../assets/nodatawebp.webp" alt="" />
+          <img src="../assets/nodatawebp.png" alt="" />
         </div>
 
         <!-- Bottom pagination -->

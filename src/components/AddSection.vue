@@ -1,7 +1,7 @@
 <template>
   <div class="addSection">
     <div class="container flex">
-      <a href="#">
+      <a href="http://dev.moafly.com/#/" target="_blank">
         <img src="../assets/Moafy-ad.png" alt="" />
       </a>
     </div>

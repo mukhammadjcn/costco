@@ -74,7 +74,7 @@ export default {
         // Storing data
         this.products = data.data.productPage.records;
         this.pagination = data.data.productPage.pages;
-        data.data.productPage.records.length > 1
+        data.data.productPage.records.length >= 1
           ? this.$toast.success("Products fetched succesfully )")
           : this.$toast.warning("No Data, choose another category");
       } catch {
